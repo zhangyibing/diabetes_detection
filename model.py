@@ -3,6 +3,8 @@ import numpy as np
 import pickle
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.metrics import confusion_matrix
 
 
 df = pd.read_csv('diabetes.csv')
@@ -55,6 +57,14 @@ rf_model.fit(X_train, y_train)
 
 file_name = 'finalized_model.pkl'
 pickle.dump(rf_model, open(file_name, 'wb'))
+
+y_pred = rf_model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+conf_matrix = confusion_matrix(y_test, y_pred)
+print(accuracy)
+print(conf_matrix)
+
+
 
 
 
